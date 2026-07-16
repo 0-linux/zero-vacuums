@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       package_name:
-        description: 'Имя пакета для сборки (например: jq)'
+        description: 'Void name to condensate'
         required: true
-        default: 'jq'
+        default: ''
 
 jobs:
   condensate:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Push compiled .void to zero-voids repo
         env:
-          PERSONAL_TOKEN: ${{ secrets.VOID_REPO_TOKEN }}
+          PERSONAL_TOKEN: ${{ secrets.VOID_PUSH_TOKEN }}
         run: |
           git config --global user.name "Zero Builder"
           git config --global user.email "builder@zerolinux.dpdns.org"
