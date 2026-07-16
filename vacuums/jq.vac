@@ -1,0 +1,19 @@
+voidname=jq
+voidver=1.8.2
+voidrev=1
+voiddeps=(oniguruma-devel)
+voiddesc="Command-line JSON processor"
+voidmaintainer="Leah Neukirchen <leah@vuxu.org>"
+voidlicense="MIT"
+voidhome="https://jqlang.github.io/jq/"
+voidurl="https://github.com/jqlang/jq/releases/download/jq-${voidver}/jq-${voidver}.tar.gz"
+voidsum=71b8d6e8f5fe81f6c6d0d110e3892251f6ce76ed095abd315e26e6e1193af3af
+
+build_void() {
+    ./configure --prefix=/usr --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}

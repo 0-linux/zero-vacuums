@@ -1,0 +1,50 @@
+name: Condensate Void Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: 'Имя пакета для сборки (например: jq)'
+        required: true
+        default: 'jq'
+
+jobs:
+  condensate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout zero-vacuums
+        uses: actions/checkout@v4
+
+      - name: Install build essentials
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential autoconf libtool bison flex wget
+
+      - name: Make script executable
+        run: chmod +x ./vcondensate
+
+      - name: Run condensation
+        run: |
+          ./vcondensate ${{ github.event.inputs.package_name }}
+
+      - name: Push compiled .void to zero-voids repo
+        env:
+          PERSONAL_TOKEN: ${{ secrets.VOID_REPO_TOKEN }}
+        run: |
+          git config --global user.name "Zero Builder"
+          git config --global user.email "builder@zerolinux.dpdns.org"
+          
+          git clone https://x-access-token:${PERSONAL_TOKEN}@github.com/${{ github.repository_owner }}/zero-voids.git target-repo
+          
+          cp *.void target-repo/
+          
+          cd target-repo
+          git add *.void
+          
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-condensated ${{ github.event.inputs.package_name }}"
+            git push origin main
+          fi

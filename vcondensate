@@ -1,0 +1,60 @@
+#!/bin/bash
+set -e
+
+CURRENT_DIR=$(pwd)
+
+if [ -z $1 ];
+then
+    echo "{!} Vacuum not specified"
+    echo "{?} Usage: ./vcondensate vacuum"
+    exit 1
+fi
+
+if [[ $1 = *.vac ]]; then
+    source $CURRENT_DIR/vacuums/$1
+else
+    source $CURRENT_DIR/vacuums/$1.vac
+fi
+
+DESTDIR="$CURRENT_DIR/$voidname"
+mkdir $DESTDIR
+
+voidfile=$(basename $voidurl)
+voiddir="${voidfile%.tar.gz}"
+voiddir="${voiddir%.tar.xz}"
+voiddir="${voiddir%.tar.bz2}"
+voiddir="${voiddir%.tgz}"
+voiddir="${voiddir%.zip}"
+
+echo "{#} Cloning ${voidurl}"
+wget $voidurl
+
+echo "{#} Verifying sha256 sums"
+if [[ $(sha256sum $voidfile | awk '{ print $1 }') != $voidsum ]];
+then
+    echo "{!} Checksums do not match!"
+    echo "{#} Cleaning after failed condensating"
+    rm $voidfile
+    exit 1
+fi
+
+echo "{#} Unpacking $voidfile"
+tar xf $voidfile
+cd $voiddir
+
+echo "{#} Building void ${voidname}"
+build_void
+
+echo "{#} Installing void ${voidname} to ${DESTDIR}"
+install_void
+
+echo "{#} Condensating to .void"
+cd ..
+tar cf $voidname.void ./$voidname
+
+echo "{#} Cleaning after vacuum condensating"
+rm $voidfile
+rm -rf $voiddir
+rm -rf $DESTDIR
+
+echo "{+} Void ${voidname} condensation successfull!"
