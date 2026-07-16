@@ -37,10 +37,12 @@ jobs:
           
           git clone https://x-access-token:${PERSONAL_TOKEN}@github.com/${{ github.repository_owner }}/zero-voids.git target-repo
           
-          cp *.void target-repo/
+          mkdir -p target-repo/pool
+
+          cp *.void target-repo/pool/
           
           cd target-repo
-          git add *.void
+          git add .
           
           if git diff-index --quiet HEAD --; then
             echo "No changes to commit."
