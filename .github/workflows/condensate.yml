@@ -15,15 +15,15 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Condensate ${{ inputs.vacuum-name }}
-        run: exit 0
-        #run: ./vcondensate ${{ inputs.vacuum-name }}
+        run: ./vcondensate ${{ inputs.vacuum-name }}
       
       - name: Push to voids
         run: |
           git config --global user.name "Zero linux vacuum condensator"
           git config --global user.email "zero-condensator@zerolinux.dpdns.org"
           git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
-          echo $GITHUB_OUTPUT
+          SPACEDIR="${{ steps.build.outputs.spacedir }}"
+          echo $SPACEDIR
           exit 0
           cd voids
           git add .

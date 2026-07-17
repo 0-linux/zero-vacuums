@@ -92,4 +92,9 @@ rm $voidfile
 rm -rf $voiddir
 rm -rf $DESTDIR
 
+if [[ -n $GITHUB_OUTPUT ]];
+then
+    echo "spacedir=${spacedir}" >> "$GITHUB_OUTPUT"
+fi
+
 echo "{+} Void ${voidname} condensation successfull!"
