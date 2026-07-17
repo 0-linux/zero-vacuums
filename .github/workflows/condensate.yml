@@ -1,6 +1,6 @@
 name: Condensate vacuum
 run-name: condensate-vacuum
-on: [workflow_call]
+on: [workflow_dispatch]
 jobs:
   condensate:
     runs-on: ubuntu-latest
