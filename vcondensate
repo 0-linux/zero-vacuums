@@ -83,6 +83,7 @@ echo "{#} Making space for void"
 mkdir "$spacedir"
 cd "$spacedir"
 mv ../$voidname.void ./
+voidsum=$(sha256sum ./$voidname.void | awk '{ print $1 }')
 echo "$voidname:$voiddeps:$voidsum:spaces/$spacedir" > $voidname.vdata
 
 echo "{#} Cleaning after vacuum condensating"
