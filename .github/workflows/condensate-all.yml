@@ -19,7 +19,7 @@ jobs:
           do
             echo "{#} Condensating vacuum $(basename $vac)"
             ./vcondensate $(basename $vac)
-            ls | grep $vac
+            ls
           done
       
       - name: Push to voids
