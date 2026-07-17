@@ -11,9 +11,9 @@ then
 fi
 
 if [[ $1 = *.vac ]]; then
-    source $CURRENT_DIR/$1
+    source $CURRENT_DIR/vacuums/$1
 else
-    source $CURRENT_DIR/$1.vac
+    source $CURRENT_DIR/vacuums/$1.vac
 fi
 
 echo "{#} Checking for dependencies"
