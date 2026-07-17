@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+REPO="target-repo"
+DB="${REPO}/voidlist.db"
+
+echo "{#} Regenerating Zero Linux voidlist.db"
+> $DB
+
+for void in "$REPO/pool"/*;
+do
+    voidfile=$(basename "$void")
+    voidname="${voidfile%.void}"
+
+    voidsum=$(sha256sum $voidfile | awk '{ print $1 }')
+
+    echo $voidsum $voidfile
+done
