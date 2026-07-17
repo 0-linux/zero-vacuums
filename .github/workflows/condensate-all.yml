@@ -23,6 +23,7 @@ jobs:
             mkdir -p ./voids/spaces
             mv $DIR ./voids/spaces/
           done
+          exit 0
       
       - name: Push to voids
         run: |
