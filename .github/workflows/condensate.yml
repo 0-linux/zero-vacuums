@@ -1,0 +1,9 @@
+name: Condensate vacuum
+run-name: condensate-vacuum
+on: [workflow_call]
+jobs:
+  condensate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: ls
