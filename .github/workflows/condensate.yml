@@ -19,8 +19,8 @@ jobs:
       
       - name: Push to voids
         run: |
-          git --config user.name "Zero linux vacuum condensator"
-          git --config user.email "zero-condensator@zerolinux.dpdns.org"
+          git config --global user.name "Zero linux vacuum condensator"
+          git config --global user.email "zero-condensator@zerolinux.dpdns.org"
           git clone https://github.com/0-linux/zero-voids voids
           cd voids
           cp ../${{ inputs.vacuum-name }}.void ./pool/
