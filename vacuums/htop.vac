@@ -2,6 +2,7 @@ voidname=htop
 voidver=3.5.1
 voidrev=1
 voidbuilddeps=(ncurses)
+voiddeps=(ncurses)
 voiddesc="An interactive process viewer"
 voidmaintainer="Hisham Muhammad <htop+owner@groups.io>"
 voidlicense="GPL-2.0"
