@@ -25,7 +25,7 @@ then
     for dep in $voidbuilddeps;
     do
         echo "{#} Installing dependencie ${dep}"
-        IFS=":" read -r depname depdeps depsha deppath <<< $(cat voidlist.db | grep $dep)
+        IFS=":" read -r depname depdeps depsha deppath <<< $(cat voidlist.db | grep "$dep:")
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath/$depname.void
         if [[ $(sha256sum $dep.void | awk '{ print $1 }') != $depsha ]];
         then
