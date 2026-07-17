@@ -68,7 +68,7 @@ echo "{#} Unpacking $voidfile"
 tar xf $voidfile
 cd $voiddir
 
-echo "{#} Building void ${voidname}"
+echo "{#} Condensating void ${voidname}"
 build_void
 
 echo "{#} Installing void ${voidname} to ${DESTDIR}"
