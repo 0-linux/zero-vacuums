@@ -3,7 +3,7 @@ set -e
 
 CURRENT_DIR=$(pwd)
 
-if [ -z $1 ];
+if [[ -z $1 ]];
 then
     echo "{!} Vacuum not specified"
     echo "{?} Usage: ./vcondensate vacuum"
@@ -11,9 +11,26 @@ then
 fi
 
 if [[ $1 = *.vac ]]; then
-    source $CURRENT_DIR/vacuums/$1
+    source $CURRENT_DIR/$1
 else
-    source $CURRENT_DIR/vacuums/$1.vac
+    source $CURRENT_DIR/$1.vac
+fi
+
+echo "{#} Checking for dependencies"
+if [[ -n $voiddeps ]];
+then
+    mkdir tmp
+    cd tmp
+    wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/voidlist.db
+    for dep in $voiddeps;
+    do
+        echo "{#} Installing dependencie ${dep}"
+        IFS=":" read -r depsha deppath <<< $(cat voidlist.db | grep $dep)
+        wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath
+        tar xf $dep.void -C /
+    done
+    cd ..
+    rm -rf tmp
 fi
 
 DESTDIR="$CURRENT_DIR/$voidname"
