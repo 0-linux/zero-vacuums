@@ -22,7 +22,6 @@ jobs:
           git config --global user.name "Zero linux vacuum condensator"
           git config --global user.email "zero-condensator@zerolinux.dpdns.org"
           git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
-          SPACEDIR="${{ steps.build.outputs.spacedir }}"
           echo $SPACEDIR
           exit 0
           cd voids

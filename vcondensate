@@ -15,6 +15,9 @@ if [[ $1 = *.vac ]]; then
 else
     source $CURRENT_DIR/vacuums/$1.vac
 fi
+spacedir="${voidname}-${voidver}_${voidrev}"
+export SPACEDIR=$spacedir
+exit 0
 
 echo "{#} Checking for dependencies"
 if [[ -n $voidbuilddeps ]];
@@ -50,7 +53,6 @@ voiddir="${voiddir%.tar.xz}"
 voiddir="${voiddir%.tar.bz2}"
 voiddir="${voiddir%.tgz}"
 voiddir="${voiddir%.zip}"
-spacedir="${voidname}-${voidver}_${voidrev}"
 
 echo "{#} Cloning ${voidurl}"
 wget $voidurl
@@ -92,9 +94,5 @@ rm $voidfile
 rm -rf $voiddir
 rm -rf $DESTDIR
 
-if [[ -n $GITHUB_OUTPUT ]];
-then
-    echo "spacedir=${spacedir}" >> "$GITHUB_OUTPUT"
-fi
 
 echo "{+} Void ${voidname} condensation successfull!"
