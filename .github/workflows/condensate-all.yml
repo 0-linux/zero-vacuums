@@ -17,7 +17,11 @@ jobs:
         run: |
           for vac in vacuums/*;
           do
-            echo $(basename $vac)
+            echo "{#} Condensating vacuum $(basename $vac)"
+            ./vcondensate $vac
+            DIR=$(ls | grep $vac)
+            mkdir -p ./voids/spaces
+            mv $DIR ./voids/spaces/
           done
       
       - name: Push to voids
