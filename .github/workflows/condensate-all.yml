@@ -28,8 +28,6 @@ jobs:
       
       - name: Push to voids
         run: |
-          ls ./voids/spaces/
-          exit 0
           git config --global user.name "Zero linux vacuum condensator"
           git config --global user.email "zero-condensator@zerolinux.dpdns.org"
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
