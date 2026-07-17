@@ -21,7 +21,7 @@ jobs:
         run: |
           git config --global user.name "Zero linux vacuum condensator"
           git config --global user.email "zero-condensator@zerolinux.dpdns.org"
-          git clone https://github.com/0-linux/zero-voids voids
+          git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
           cd voids
           cp ../${{ inputs.vacuum-name }}.void ./pool/
           git add .
