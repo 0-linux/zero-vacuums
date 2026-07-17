@@ -17,18 +17,14 @@ jobs:
             vacname=$(basename $vac)
             ./vcondensate $vacname
           done
-          ls
       
-      #- name: Push to voids
-      #  run: |
-      #   git config --global user.name "Zero linux vacuum condensator"
-      #   git config --global user.email "zero-condensator@zerolinux.dpdns.org"
-      #   git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
-      #   cp ./${{ inputs.vacuum-name }}.void ./voids/pool/
-
-      #   ./update-voidlist
-
-      #   cd voids
-      #   git add .
-      #   git commit -m "Automatically updated/added vacuum ${{ inputs.vacuum-name }}"
-      #   git push -u origin main
+      - name: Push to voids
+        run: |
+         git config --global user.name "Zero linux vacuum condensator"
+         git config --global user.email "zero-condensator@zerolinux.dpdns.org"
+         git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
+         cp ./*.void ./voids/pool/
+         cd voids
+         git add .
+         git commit -m "Automatically updated/added all vacuums"
+         git push -u origin main
