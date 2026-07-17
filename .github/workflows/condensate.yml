@@ -24,7 +24,7 @@ jobs:
           git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
           cp ./${{ inputs.vacuum-name }}.void ./voids/pool/
 
-          update-voidlist
+          ./update-voidlist
 
           cd voids
           git add .
