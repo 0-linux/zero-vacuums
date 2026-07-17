@@ -11,8 +11,10 @@ jobs:
   condensate:
     runs-on: ubuntu-latest
     steps:
-      - name: Condensate ${{ inputs.vacuum-name }}
+      - name: Checkout repo
         uses: actions/checkout@v6
+
+      - name: Condensate ${{ inputs.vacuum-name }}
         run: ./vcondensate ${{ inputs.vacuum-name }}
       
       - name: Push to voids
