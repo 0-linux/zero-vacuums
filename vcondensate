@@ -27,7 +27,7 @@ then
         echo "{#} Installing dependencie ${dep}"
         IFS=":" read -r depsha deppath <<< $(cat voidlist.db | grep $dep)
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath
-        tar xf $dep.void -C /
+        sudo tar xf $dep.void -C / --strip-components=1
     done
     cd ..
     rm -rf tmp
