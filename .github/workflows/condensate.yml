@@ -1,9 +1,15 @@
 name: Condensate vacuum
 run-name: condensate-vacuum
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      vacuum-name:
+        description: 'Vacuum name'
+        type: string
+  workflow_call:
 jobs:
   condensate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: ls
+      - run: ./vcondensate ${{ inputs.vacuum-name }}
