@@ -33,5 +33,5 @@ jobs:
           git config --global user.email "zero-condensator@zerolinux.dpdns.org"
           cd voids
           git add .
-          git commit -m "Automatically updated/added vacuum ${{ inputs.vacuum-name }}"
+          git commit -m "Automatically updated/added all vacuums"
           git push -u origin main
