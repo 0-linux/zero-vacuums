@@ -15,8 +15,9 @@ jobs:
           for vac in vacuums/*;
           do
             vacname=$(basename $vac)
-            echo $vacname
+            ./vcondensate $vacname
           done
+          ls
       
       #- name: Push to voids
       #  run: |
