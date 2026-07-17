@@ -18,7 +18,7 @@ jobs:
           for vac in vacuums/*;
           do
             echo "{#} Condensating vacuum $(basename $vac)"
-            ./vcondensate $vac
+            ./vcondensate $(basename $vac)
             DIR=$(ls | grep $vac)
             mkdir -p ./voids/spaces
             mv $DIR ./voids/spaces/
