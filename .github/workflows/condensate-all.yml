@@ -23,7 +23,7 @@ jobs:
             ./vcondensate $vac
             DIR=$(ls | grep $vac)
             mkdir -p ./voids/spaces
-            mv $DIR ./voids/spaces/
+            mv $DIR ./voids/spaces/ -f
           done
       
       - name: Push to voids
