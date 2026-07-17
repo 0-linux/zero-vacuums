@@ -12,7 +12,7 @@ do
     voidfile=$(basename "$void")
     voidname="${voidfile%.void}"
 
-    voidsum=$(sha256sum $voidfile | awk '{ print $1 }')
+    voidsum=$(sha256sum $void | awk '{ print $1 }')
 
     echo $voidsum $voidfile
 done
