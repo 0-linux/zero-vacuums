@@ -21,7 +21,9 @@ jobs:
             vac=${vac%.vac}
             echo "{#} Condensating vacuum $vac"
             ./vcondensate $vac
-            echo $vac
+            DIR=$(ls | grep $vac)
+            mkdir -p ./voids/spaces
+            mv $DIR ./voids/spaces/
           done
       
       - name: Push to voids
