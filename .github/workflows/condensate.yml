@@ -22,3 +22,4 @@ jobs:
           git clone https://github.com/0-linux/zero-voids voids
           cd voids
           ls
+          ls ..
