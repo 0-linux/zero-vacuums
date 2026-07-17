@@ -21,5 +21,7 @@ jobs:
         run: |
           git clone https://github.com/0-linux/zero-voids voids
           cd voids
-          ls
-          ls ..
+          cp ../${{ inputs.vacuum-name }}.void ./pool/
+          git add .
+          git commit -m "Automatically updated/added vacuum ${{ inputs.vacuum-name }}"
+          git push -u origin main
