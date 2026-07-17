@@ -1,7 +1,6 @@
 voidname=jq
 voidver=1.8.2
 voidrev=1
-voiddeps=(oniguruma-devel)
 voiddesc="Command-line JSON processor"
 voidmaintainer="Leah Neukirchen <leah@vuxu.org>"
 voidlicense="MIT"
