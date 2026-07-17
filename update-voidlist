@@ -14,6 +14,6 @@ do
 
     voidsum=$(sha256sum $void | awk '{ print $1 }')
 
-    echo "$voidfile:$voidfile" > $DB
+    echo "$voidsum:pool/$voidfile" >> $DB
 done
 echo "{+} Done regenerating"
