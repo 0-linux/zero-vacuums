@@ -23,9 +23,9 @@ jobs:
           git config --global user.email "zero-condensator@zerolinux.dpdns.org"
           git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
-          mv ./$DIR ./voids/spaces/
+          mkdir ./voids/spaces/$DIR
+          mv ./$DIR ./voids/spaces/$DIR
           ls ./voids/spaces
-          echo $DIR
           exit 0
           cd voids
           git add .
