@@ -17,12 +17,12 @@ else
 fi
 
 echo "{#} Checking for dependencies"
-if [[ -n $voiddeps ]];
+if [[ -n $voidbuilddeps ]];
 then
     mkdir tmp
     cd tmp
     wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/voidlist.db
-    for dep in $voiddeps;
+    for dep in $voidbuilddeps;
     do
         echo "{#} Installing dependencie ${dep}"
         IFS=":" read -r depsha deppath <<< $(cat voidlist.db | grep $dep)
@@ -50,6 +50,7 @@ voiddir="${voiddir%.tar.xz}"
 voiddir="${voiddir%.tar.bz2}"
 voiddir="${voiddir%.tgz}"
 voiddir="${voiddir%.zip}"
+spacedir="${voidname}-${voidver}_${voidrev}"
 
 echo "{#} Cloning ${voidurl}"
 wget $voidurl
@@ -78,7 +79,14 @@ cd ../$voidname
 tar cf ../$voidname.void *
 cd ..
 
+echo "{#} Making space for void"
+mkdir "$spacedir"
+cd "$spacedir"
+mv ../$voidname.void ./
+echo "$voidname:$voiddeps:$voidsum:spaces/$spacedir" > $voidname.vdata
+
 echo "{#} Cleaning after vacuum condensating"
+cd ..
 rm $voidfile
 rm -rf $voiddir
 rm -rf $DESTDIR
