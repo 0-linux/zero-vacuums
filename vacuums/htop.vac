@@ -1,0 +1,19 @@
+voidname=htop
+voidver=3.5.1
+voidrev=1
+voiddeps=(ncurses)
+voiddesc="An interactive process viewer"
+voidmaintainer="Hisham Muhammad <htop+owner@groups.io>"
+voidlicense="GPL-2.0"
+voidhome="https://htop.dev"
+voidurl="https://github.com/htop-dev/htop/releases/download/${voidver}/htop-${voidver}.tar.xz"
+voidsum=526cecd62870aa8d14d2a79a35ea197e4e2b5317d275b567cee0574b2ddb2e9a
+
+build_void() {
+    ./configure --prefix=/usr --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
