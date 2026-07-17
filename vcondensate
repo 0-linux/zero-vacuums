@@ -93,3 +93,4 @@ rm -rf $voiddir
 rm -rf $DESTDIR
 
 echo "{+} Void ${voidname} condensation successfull!"
+exit 0
