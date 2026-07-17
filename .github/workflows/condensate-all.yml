@@ -1,0 +1,33 @@
+name: Condensate all vacuums
+run-name: condensate-all-vacuums
+on: 
+  workflow_dispatch:
+  workflow_call:
+jobs:
+  condensate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Condensate all vacuums
+        run: |
+          for vac in vacuums/*;
+          do
+            vacname=$(basename $vac)
+            echo $vacname
+          done
+      
+      #- name: Push to voids
+      /*  run: |
+          git config --global user.name "Zero linux vacuum condensator"
+          git config --global user.email "zero-condensator@zerolinux.dpdns.org"
+          git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
+          cp ./${{ inputs.vacuum-name }}.void ./voids/pool/
+
+          ./update-voidlist
+
+          cd voids
+          git add .
+          git commit -m "Automatically updated/added vacuum ${{ inputs.vacuum-name }}"
+          git push -u origin main*/
