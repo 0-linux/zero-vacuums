@@ -27,7 +27,7 @@ then
         echo "{#} Installing dependencie ${dep}"
         IFS=":" read -r depsha deppath <<< $(cat voidlist.db | grep $dep)
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath
-        sudo tar xf $dep.void -C / --strip-components=1
+        sudo tar xf $dep.void -C /
     done
     cd ..
     rm -rf tmp
@@ -66,8 +66,9 @@ echo "{#} Installing void ${voidname} to ${DESTDIR}"
 install_void
 
 echo "{#} Condensating to .void"
+cd ../$voidname
+tar cf ../$voidname.void *
 cd ..
-tar cf $voidname.void ./$voidname
 
 echo "{#} Cleaning after vacuum condensating"
 rm $voidfile
