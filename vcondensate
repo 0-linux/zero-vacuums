@@ -27,6 +27,14 @@ then
         echo "{#} Installing dependencie ${dep}"
         IFS=":" read -r depsha deppath <<< $(cat voidlist.db | grep $dep)
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath
+        if [[ $(sha256sum $dep.void | awk '{ print $1 }') != $depsha ]];
+        then
+            echo "{!} Checksums do not match!"
+            echo "{#} Cleaning after failed condensating"
+            cd ..
+            rm -rf tmp
+            exit 1
+        fi
         sudo tar xf $dep.void -C /
     done
     cd ..
