@@ -25,6 +25,7 @@ jobs:
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
           mv ./$DIR ./voids/spaces/
           ls ./voids/spaces
+          echo $DIR
           exit 0
           cd voids
           git add .
