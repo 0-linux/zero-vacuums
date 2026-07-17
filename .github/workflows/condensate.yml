@@ -23,11 +23,8 @@ jobs:
           git config --global user.email "zero-condensator@zerolinux.dpdns.org"
           git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
-          ls ./voids
-          mkdir ./voids/spaces/$DIR
+          mkdir ./voids/spaces/ -p
           mv ./$DIR ./voids/spaces/$DIR
-          ls ./voids/spaces
-          exit 0
           cd voids
           git add .
           git commit -m "Automatically updated/added vacuum ${{ inputs.vacuum-name }}"
