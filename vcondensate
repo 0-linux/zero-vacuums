@@ -9,11 +9,14 @@ install_deps()
     local deps=$(echo $1 | sed "s|,| |g")
     for dep in $deps;
     do
-        depdata=$(grep "^${dep}:")
+        depdata=$(grep "^${dep}:" voidlist.db)
         IFS=":" read depname depdeps depsum deppath <<< "$depdata"
         if [[ -n $depdeps ]];
         then
             install_deps $depdeps
+        fi
+        if [[ -f "${depname}.void" ]]; then
+            continue
         fi
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath/$depname.void
         echo "{#} Verifying sha256 sums"
