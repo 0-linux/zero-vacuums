@@ -3,6 +3,17 @@ set -e
 
 CURRENT_DIR=$(pwd)
 
+install_deps()
+{
+    local deps=$(echo $1 | sed "s|,| |g")
+    for dep in $deps;
+    do
+        IFS=":" read depname depdeps depsha deppath <<< $(grep -E "^${dep}:" voidlist.db)
+        wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath/$depname.void
+        sudo tar xf $depname.void -C /
+    done
+}
+
 if [[ -z $1 ]];
 then
     echo "{!} Vacuum not specified"
@@ -22,21 +33,7 @@ then
     mkdir tmp
     cd tmp
     wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/voidlist.db
-    for dep in $voidbuilddeps;
-    do
-        echo "{#} Installing dependencie ${dep}"
-        IFS=":" read -r depname depdeps depsha deppath <<< $(cat voidlist.db | grep -E "^${dep}:")
-        wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath/$depname.void
-        if [[ $(sha256sum $depname.void | awk '{ print $1 }') != $depsha ]];
-        then
-            echo "{!} Checksums do not match!"
-            echo "{#} Cleaning after failed condensating"
-            cd ..
-            rm -rf tmp
-            exit 1
-        fi
-        sudo tar xf $depname.void -C /
-    done
+    install_deps $voidbuilddeps
     cd ..
     rm -rf tmp
 fi
