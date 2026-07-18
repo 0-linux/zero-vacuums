@@ -24,6 +24,7 @@ jobs:
           git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
           mkdir ./voids/spaces/ -p
+          rm -rf ./voids/spaces/$DIR
           mv ./$DIR ./voids/spaces/$DIR
           cd voids
           git add .
