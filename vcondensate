@@ -47,7 +47,6 @@ then
     cd ..
     rm -rf tmp
 fi
-exit 0
 
 DESTDIR="$CURRENT_DIR/$voidname"
 mkdir $DESTDIR
