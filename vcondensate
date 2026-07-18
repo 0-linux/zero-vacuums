@@ -15,9 +15,6 @@ install_deps()
         then
             install_deps $depdeps
         fi
-        if [[ -f "${depname}.void" ]]; then
-            continue
-        fi
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath/$depname.void
         echo "{#} Verifying sha256 sums"
         if [[ $(sha256sum $depname.void | awk '{ print $1 }') != $depsum ]];
