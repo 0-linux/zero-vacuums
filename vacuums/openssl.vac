@@ -1,0 +1,21 @@
+voidname=openssl
+voidver=4.0.1
+voidrev=1
+voiddesc="General purpose TLS and crypto library"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="Apache-2.0"
+voidhome="https://www.openssl.org"
+voidurl="https://github.com/openssl/openssl/releases/download/openssl-${voidver}/openssl-${voidver}.tar.gz"
+voidsum=2db3f3a0d6ea4b59e1f094ace2c8cd536dffb87cdc39084c5afa1e6f7f37dd09
+
+build_void() {
+    ./configure --prefix=/usr --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
+
+
+

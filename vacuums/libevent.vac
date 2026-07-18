@@ -1,6 +1,8 @@
 voidname=libevent
 voidver=2.1.13
 voidrev=1
+voiddeps=(openssl)
+voidbuilddeps=(openssl)
 voiddesc="Event notification library"
 voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
 voidlicense="BSD"
