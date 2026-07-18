@@ -9,10 +9,6 @@ install_deps()
     for dep in $deps;
     do
         IFS=":" read depname depdeps depsum deppath <<< $(grep -E "^${dep}:" voidlist.db)
-        if [[ -n $depdeps ]];
-        then
-            install_deps $depdeps
-        fi
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath/$depname.void
         echo "{#} Verifying sha256 sums"
         if [[ $(sha256sum $depname.void | awk '{ print $1 }') != $depsum ]];
@@ -24,6 +20,10 @@ install_deps()
             exit 1
         fi
         sudo tar xf $depname.void -C /
+        if [[ -n $depdeps ]];
+        then
+            install_deps $depdeps
+        fi
     done
 }
 
