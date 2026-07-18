@@ -8,8 +8,18 @@ install_deps()
     local deps=$(echo $1 | sed "s|,| |g")
     for dep in $deps;
     do
-        IFS=":" read depname depdeps depsha deppath <<< $(grep -E "^${dep}:" voidlist.db)
+        IFS=":" read depname depdeps depsum deppath <<< $(grep -E "^${dep}:" voidlist.db)
+        install_deps $depdeps
         wget https://github.com/0-linux/zero-voids/raw/refs/heads/main/$deppath/$depname.void
+        echo "{#} Verifying sha256 sums"
+        if [[ $(sha256sum $depname.void | awk '{ print $1 }') != $depsum ]];
+        then
+            echo "{!} Checksums do not match!"
+            echo "{#} Cleaning after failed condensating"
+            cd ..
+            rm -rf tmp
+            exit 1
+        fi
         sudo tar xf $depname.void -C /
     done
 }
@@ -37,6 +47,7 @@ then
     cd ..
     rm -rf tmp
 fi
+exit 0
 
 DESTDIR="$CURRENT_DIR/$voidname"
 mkdir $DESTDIR
