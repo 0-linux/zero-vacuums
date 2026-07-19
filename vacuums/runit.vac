@@ -1,0 +1,18 @@
+voidname=runit
+voidver=v2.3.1
+voidrev=1
+voiddesc="runit is a cross-platform Unix init scheme with service supervision"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2.0"
+voidhome="https://smarden.org/runit"
+voidurl="https://github.com/g-pape/runit/archive/refs/tags/${voidver}.tar.gz"
+voidsum=532a2743c94084bc22ab90cb9592e7aef0aed3d6193c903d1011d26d7f67bec1
+
+build_void() {
+    ls
+}
+
+install_void() {
+    ls
+}
+
