@@ -12,7 +12,7 @@ voidsum=a451596f794739216da2e98398e31958ecf455f2372d99a12194a468e852e834
 build_void() {
     ./autogen.sh
     ./configure --prefix=/usr --sysconfdir=/etc
-    make -j$(nproc)
+    sudo make -j$(nproc)
 }
 
 install_void() {

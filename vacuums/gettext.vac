@@ -10,7 +10,7 @@ voidsum=71132a3fb71e68245b8f2ac4e9e97137d3e5c02f415636eb508ae607bc01add7
 
 build_void() {
     ./configure --prefix=/usr --sysconfdir=/etc
-    sudo make -j$(nproc)
+    make -j$(nproc)
 }
 
 install_void() {
