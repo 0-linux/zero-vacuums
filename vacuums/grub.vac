@@ -1,0 +1,22 @@
+voidname=grub
+voidver=2.14
+voidrev=1
+voiddesc="GNU GRUB is a Multiboot boot loader"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2.0"
+voidhome="https://www.gnu.org/software/grub/"
+voidurl="https://ftp.gnu.org/gnu/grub/grub-${voidver}.tar.xz"
+voidsum=bc8d3c73535b8838d8c8e2654d73edc4e6ae8c8acdb45d5df5dc9a1547446d43
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
+
+
