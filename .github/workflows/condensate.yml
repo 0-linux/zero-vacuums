@@ -30,6 +30,7 @@ jobs:
         run: |
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
           scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
+          scp -r $DIR aevod@web.sourceforge.net:/home/project-web/zero-linux/htdocs/spaces/
 
       - name: Download .vdata's
         run: |
@@ -40,3 +41,4 @@ jobs:
         run: |
           ./update-voidlist
           scp ./voidlist.db aevod@frs.sourceforge.net:/home/frs/project/zero-linux/
+          scp ./voidlist.db aevod@web.sourceforge.net:/home/project-web/zero-linux/
