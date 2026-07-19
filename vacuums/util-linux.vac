@@ -1,12 +1,12 @@
 voidname=util-linux
-voidver=v2.42.2
+voidver=2.42.2
 voidrev=1
 voidbuilddeps=(gettext)
 voiddesc="util-linux is a random collection of Linux utilities"
 voidlicense="GPL-2.0"
 voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
 voidhome="http://vger.kernel.org/vger-lists.html#util-linux"
-voidurl="https://github.com/util-linux/util-linux/archive/refs/tags/${voidver}.tar.gz"
+voidurl="https://github.com/util-linux/util-linux/archive/refs/tags/v${voidver}.tar.gz"
 voidsum=a451596f794739216da2e98398e31958ecf455f2372d99a12194a468e852e834
 
 build_void() {
