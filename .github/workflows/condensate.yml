@@ -25,8 +25,20 @@ jobs:
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
           mkdir ./voids/spaces/ -p
           rm -rf ./voids/spaces/$DIR
-          mv ./$DIR ./voids/spaces/$DIR
+          mkdir ./voids/spaces/$DIR
+          mv ./$DIR/*vdata ./voids/spaces/$DIR/
           cd voids
           git add .
           git commit -m "Automatically updated/added vacuum ${{ inputs.vacuum-name }}"
           git push -u origin main
+
+      - name: Upload .void to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "binaries"
+          overwrite: true     
+          prerelease: false
+          files: |
+            ./${{ inputs.vacuum-name }}_*/*.void
+        env:
+          GITHUB_TOKEN: ${{ secrets.VOID_PUSH_TOKEN }}
