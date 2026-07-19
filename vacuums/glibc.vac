@@ -12,6 +12,7 @@ build_void() {
     mkdir build && cd build
     ../configure --prefix=/usr --sysconfdir=/etc
     make -j$(nproc)
+    cd ..
 }
 
 install_void() {
