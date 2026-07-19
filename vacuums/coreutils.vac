@@ -1,4 +1,4 @@
-voidname=glibc
+voidname=coreutils
 voidver=9.11
 voidrev=1
 voiddesc="GNU Core Utils"

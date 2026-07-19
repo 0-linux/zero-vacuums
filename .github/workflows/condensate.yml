@@ -29,7 +29,6 @@ jobs:
 
       - name: Upload to SourceForge
         run: |
-          ls
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
           scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
           scp -r $DIR aevod@web.sourceforge.net:/home/project-web/zero-linux/htdocs/spaces/
