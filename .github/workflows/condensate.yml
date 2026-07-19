@@ -42,4 +42,4 @@ jobs:
         run: |
           ./update-voidlist
           scp ./voidlist.db aevod@frs.sourceforge.net:/home/frs/project/zero-linux/
-          scp ./voidlist.db aevod@web.sourceforge.net:/home/project-web/zero-linux/
+          scp ./voidlist.db aevod@web.sourceforge.net:/home/project-web/zero-linux/htdocs/
