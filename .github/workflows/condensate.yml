@@ -20,8 +20,9 @@ jobs:
       - name: Upload to SourceForge
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/id_ed25519
+          echo "$SSH_KEY" | tr -d '\r' | sed -e '$a\' > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
+          ssh-keygen -l -f ~/.ssh/id_ed25519
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
 
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
