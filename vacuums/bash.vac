@@ -1,0 +1,20 @@
+voidname=bash
+voidver=5.3
+voidrev=1
+voiddesc="Bourne Again SHell"
+voidlicense="GPL-2.0"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidhome="https://ftp.gnu.org/gnu/bash"
+voidurl="https://ftp.gnu.org/gnu/bash/bash-${voidver}.tar.xz"
+voidsum=cc012bc860406dcf42f64431bcd3d2fa7560c02915a601aba9cd597a39329baa
+
+build_void() {
+    ./configure --prefix=/usr --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
+
+
