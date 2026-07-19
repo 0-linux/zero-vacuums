@@ -16,6 +16,8 @@ build_void() {
 
 install_void() {
     make DESTDIR=$DESTDIR install
+    find "$DESTDIR" -type f -name "*.so*" -exec strip --strip-unneeded {} + 2>/dev/null
+    find "$DESTDIR" -type f -executable -exec strip --strip-all {} + 2>/dev/null
     cd ..
 }
 
