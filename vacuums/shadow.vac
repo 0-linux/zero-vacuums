@@ -1,0 +1,22 @@
+voidname=shadow
+voidver=4.19.4
+voidrev=1
+voiddesc="The shadow-utils package includes the necessary programs for converting UNIX password files to the shadow password format, plus programs for managing user and group accounts."
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="BSD-3-Claude"
+voidhome="https://github.com/shadow-maint/shadow/"
+voidurl="https://github.com/shadow-maint/shadow/releases/download/${voidver}/shadow-${voidver}.tar.gz"
+voidsum=ba7e9aed1c5420203ac549583d6e6f485a819ac7505af9c7cd8c13b2013210b8
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --disable-logind \
+        --with-libbsd=no
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
