@@ -27,4 +27,4 @@ jobs:
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
 
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
-          scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/
+          scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
