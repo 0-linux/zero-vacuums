@@ -10,7 +10,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v6
 
-      - name: Condensate all
+      - name: Setup ssh
         env:
           SSH_KEY: ${{ secrets.SF_SSH_KEY }}
         run: |
@@ -18,7 +18,10 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+          ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 
+      - name: Condensate all
+        run: |
           for vac in vacuums/*;
           do
             vac=$(basename $vac)
@@ -28,3 +31,14 @@ jobs:
             DIR=$(ls | grep $vac)
             scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
           done
+
+      - name: Download .vdata's
+        run: |
+          mkdir spaces
+          scp -r aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/* ./spaces/ || true
+
+      - name: Update voidlist.db
+        run: |
+          ./update-voidlist
+          scp ./voidlist.db aevod@frs.sourceforge.net:/home/frs/project/zero-linux/
+          scp ./voidlist.db aevod@web.sourceforge.net:/home/project-web/zero-linux/htdocs/
