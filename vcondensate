@@ -55,11 +55,6 @@ DESTDIR="$CURRENT_DIR/$voidname"
 mkdir $DESTDIR
 
 voidfile=$(basename $voidurl)
-voiddir="${voidfile%.tar.gz}"
-voiddir="${voiddir%.tar.xz}"
-voiddir="${voiddir%.tar.bz2}"
-voiddir="${voiddir%.tgz}"
-voiddir="${voiddir%.zip}"
 spacedir="${voidname}-${voidver}_${voidrev}"
 
 echo "{#} Cloning ${voidurl}"
@@ -75,6 +70,7 @@ then
 fi
 
 echo "{#} Unpacking $voidfile"
+voiddir=$(tar tf $voidfile | head -n 1 | cut -f1 -d"/")
 tar xf $voidfile
 cd $voiddir
 
