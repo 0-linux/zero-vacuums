@@ -17,16 +17,12 @@ jobs:
       - name: Condensate ${{ inputs.vacuum-name }}
         run: ./vcondensate ${{ inputs.vacuum-name }}
       
-      - name: Push to voids
+      - name: Upload to SourceForge
         run: |
-          git config --global user.name "Zero linux vacuum condensator"
-          git config --global user.email "zero-condensator@zerolinux.dpdns.org"
-          git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
-          mkdir ./voids/spaces/ -p
-          rm -rf ./voids/spaces/$DIR
-          mv ./$DIR ./voids/spaces/$DIR
-          cd voids
-          git add .
-          git commit -m "Automatically updated/added vacuum ${{ inputs.vacuum-name }}"
-          git push -u origin main
+          scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/
