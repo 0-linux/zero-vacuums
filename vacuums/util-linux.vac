@@ -14,7 +14,9 @@ build_void() {
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
-        --disable-use-tty-group
+        --disable-use-tty-group \
+        --disable-makeinstall-chown \
+        --disable-makeinstall-setuid
     make -j$(nproc)
 }
 
