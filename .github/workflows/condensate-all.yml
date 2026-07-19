@@ -10,11 +10,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v6
 
-      - name: Clone voids repo
-        run: git clone https://x-access-token:${{ secrets.VOID_PUSH_TOKEN }}@github.com/0-linux/zero-voids.git voids
-
       - name: Condensate all
+        env:
+          SSH_KEY: ${{ secrets.SF_SSH_KEY }}
         run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+
           for vac in vacuums/*;
           do
             vac=$(basename $vac)
@@ -22,16 +26,5 @@ jobs:
             echo "{#} Condensating vacuum $vac"
             ./vcondensate $vac
             DIR=$(ls | grep $vac)
-            mkdir -p ./voids/spaces
-            rm -rf ./voids/spaces/$DIR
-            mv $DIR ./voids/spaces/
+            scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
           done
-      
-      - name: Push to voids
-        run: |
-          git config --global user.name "Zero linux vacuum condensator"
-          git config --global user.email "zero-condensator@zerolinux.dpdns.org"
-          cd voids
-          git add .
-          git commit -m "Automatically updated/added all vacuums"
-          git push -u origin main
