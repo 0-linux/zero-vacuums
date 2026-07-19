@@ -28,3 +28,4 @@ jobs:
 
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
           scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
+          ssh aevod@frs.sourceforge.net "cat update-voidlist"
