@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+DB="voidlist.db"
+
+echo "{#} Regenerating Zero Linux voidlist.db"
+> $DB
+
+for void in ./spaces/*/*.vdata;
+do
+    cat $void >> $DB
+done
+echo "{+} Done regenerating"

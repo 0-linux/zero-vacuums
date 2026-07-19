@@ -17,7 +17,7 @@ jobs:
       - name: Condensate ${{ inputs.vacuum-name }}
         run: ./vcondensate ${{ inputs.vacuum-name }}
       
-      - name: Upload to SourceForge
+      - name: Setup ssh
         env:
           SSH_KEY: ${{ secrets.SF_SSH_KEY }}
         run: |
@@ -26,6 +26,17 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
 
+      - name: Upload to SourceForge
+        run: |
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
           scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
-          ssh aevod@frs.sourceforge.net "cat update-voidlist"
+
+      - name: Download .vdata's
+        run: |
+          mkdir spaces
+          scp -r aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/* ./spaces/ || true
+
+      - name: Update voidlist.db
+        run: |
+          ./update-voidlist
+          scp ./voidlist.db aevod@frs.sourceforge.net:/home/frs/project/zero-linux/
