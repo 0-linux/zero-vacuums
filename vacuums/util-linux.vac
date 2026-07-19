@@ -1,6 +1,7 @@
 voidname=util-linux
 voidver=v2.42.2
 voidrev=1
+voidbuilddeps=(gettext)
 voiddesc="util-linux is a random collection of Linux utilities"
 voidlicense="GPL-2.0"
 voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
