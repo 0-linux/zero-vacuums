@@ -1,0 +1,20 @@
+voidname=glibc
+voidver=2.43
+voidrev=1
+voiddesc="GNU C Library"
+voidlicense="GPL-2.0"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidhome="https://ftp.gnu.org/gnu/glibc"
+voidurl="https://ftp.gnu.org/gnu/glibc/glibc-${voidver}.tar.xz"
+voidsum=d9c86c6b5dbddb43a3e08270c5844fc5177d19442cf5b8df4be7c07cd5fa3831
+
+build_void() {
+    mkdir build && cd build
+    ../configure --prefix=/usr --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
+
