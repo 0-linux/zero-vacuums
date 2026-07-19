@@ -11,7 +11,9 @@ voidurl="https://github.com/htop-dev/htop/releases/download/${voidver}/htop-${vo
 voidsum=526cecd62870aa8d14d2a79a35ea197e4e2b5317d275b567cee0574b2ddb2e9a
 
 build_void() {
-    ./configure --prefix=/usr --sysconfdir=/etc
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
     make -j$(nproc)
 }
 

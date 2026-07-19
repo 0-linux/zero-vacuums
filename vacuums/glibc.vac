@@ -10,7 +10,9 @@ voidsum=d9c86c6b5dbddb43a3e08270c5844fc5177d19442cf5b8df4be7c07cd5fa3831
 
 build_void() {
     mkdir build && cd build
-    ../configure --prefix=/usr --sysconfdir=/etc
+    ../configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
     make -j$(nproc)
 }
 
@@ -18,4 +20,3 @@ install_void() {
     make DESTDIR=$DESTDIR install
     cd ..
 }
-

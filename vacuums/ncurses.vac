@@ -20,4 +20,3 @@ build_void() {
 install_void() {
     make DESTDIR=$DESTDIR install
 }
-

@@ -9,11 +9,12 @@ voidurl="https://ftp.gnu.org/gnu/gettext/gettext-${voidver}.tar.xz"
 voidsum=71132a3fb71e68245b8f2ac4e9e97137d3e5c02f415636eb508ae607bc01add7
 
 build_void() {
-    ./configure --prefix=/usr --sysconfdir=/etc
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
     make -j$(nproc)
 }
 
 install_void() {
     make DESTDIR=$DESTDIR install
 }
-

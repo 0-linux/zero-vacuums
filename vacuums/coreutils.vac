@@ -9,12 +9,12 @@ voidurl="https://ftp.gnu.org/gnu/coreutils/coreutils-${voidver}.tar.xz"
 voidsum=394024eda0a5955217ceda9cd1201e65dc8fa3aa29c2951135a49521d57c3cc3
 
 build_void() {
-    ./configure --prefix=/usr --sysconfdir=/etc
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
     make -j$(nproc)
 }
 
 install_void() {
     make DESTDIR=$DESTDIR install
 }
-
-

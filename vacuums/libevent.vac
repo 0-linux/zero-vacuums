@@ -11,12 +11,12 @@ voidurl="https://github.com/libevent/libevent/releases/download/release-${voidve
 voidsum=f7e9383b8c0baa81b687e5b5eecc01beefaf1b19b64151d95ed61647fe7a315c
 
 build_void() {
-    ./configure --prefix=/usr --sysconfdir=/etc
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
     make -j$(nproc)
 }
 
 install_void() {
     make DESTDIR=$DESTDIR install
 }
-
-

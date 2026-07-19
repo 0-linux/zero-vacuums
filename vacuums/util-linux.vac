@@ -11,12 +11,13 @@ voidsum=a451596f794739216da2e98398e31958ecf455f2372d99a12194a468e852e834
 
 build_void() {
     ./autogen.sh
-    ./configure --prefix=/usr --sysconfdir=/etc
-    sudo make -j$(nproc)
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --disable-use-tty-group
+    make -j$(nproc)
 }
 
 install_void() {
     make DESTDIR=$DESTDIR install
 }
-
-
