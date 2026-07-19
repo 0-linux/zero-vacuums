@@ -12,7 +12,8 @@ build_void() {
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
-        --with-shared
+        --with-shared \
+        --with-termlib=tinfo
     make -j$(nproc)
 }
 
