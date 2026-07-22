@@ -14,7 +14,8 @@ build_void() {
         --sysconfdir=/etc \
         --with-shared \
         --with-termlib=tinfo \
-        --enable-widec
+        --enable-widec \
+        --with-versioned-syms
     make -j$(nproc)
 }
 
