@@ -30,9 +30,9 @@ jobs:
       - name: Remove previous revs from SourceForge
         run: |
           echo "rm /home/frs/project/zero-linux/spaces/${{ inputs.vacuum-name }}*/*" | sftp aevod@frs.sourceforge.net
-          echo "rm /home/project-web/zero-linux/htdocs/spaces/${{ inputs.vacuum-name }}*/*" | sftp aevod@frs.sourceforge.net
+          echo "rm /home/project-web/zero-linux/htdocs/spaces/${{ inputs.vacuum-name }}*/*" | sftp aevod@web.sourceforge.net
           echo "rmdir /home/frs/project/zero-linux/spaces/${{ inputs.vacuum-name }}*" | sftp aevod@frs.sourceforge.net
-          echo "rmdir /home/project-web/zero-linux/htdocs/spaces/${{ inputs.vacuum-name }}*" | sftp aevod@frs.sourceforge.net
+          echo "rmdir /home/project-web/zero-linux/htdocs/spaces/${{ inputs.vacuum-name }}*" | sftp aevod@web.sourceforge.net
 
       - name: Upload to SourceForge
         run: |
