@@ -30,6 +30,7 @@ jobs:
             ./vcondensate $vac
             DIR=$(ls | grep $vac)
             scp -r $DIR aevod@frs.sourceforge.net:/home/frs/project/zero-linux/spaces/
+            scp -r $DIR aevod@web.sourceforge.net:/home/project/zero-linux/htdocs/spaces/
           done
 
       - name: Download .vdata's
