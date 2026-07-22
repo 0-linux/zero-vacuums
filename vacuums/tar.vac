@@ -1,0 +1,20 @@
+voidname=tar
+voidver=1.35
+voidrev=1
+voiddesc="GNU archivator"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2"
+voidhome="https://ftp.gnu.org/gnu/tar"
+voidurl="https://ftp.gnu.org/gnu/tar/tar-${voidver}.tar.xz"
+voidsum=4d62ff37342ec7aed748535323930c7cf94acf71c3591882b26a7ea50f3edc16
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
