@@ -1,6 +1,6 @@
 voidname=ncurses
 voidver=6.6
-voidrev=2
+voidrev=1
 voiddesc="System V Ncuses library for terminal handling"
 voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
 voidlicense="MIT"
