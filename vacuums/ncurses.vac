@@ -13,7 +13,8 @@ build_void() {
         --prefix=/usr \
         --sysconfdir=/etc \
         --with-shared \
-        --with-termlib=tinfo
+        --with-termlib=tinfo \
+        --enable-widec
     make -j$(nproc)
 }
 
