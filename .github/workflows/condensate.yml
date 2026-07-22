@@ -27,6 +27,13 @@ jobs:
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
           ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 
+      - name: Remove previous revs from SourceForge
+        run: |
+          echo "rm /home/frs/project/zero-linux/spaces/${{ inputs.vacuum-name }}*/*" | sftp aevod@frs.sourceforge.net
+          echo "rm /home/project-web/zero-linux/htdocs/spaces/${{ inputs.vacuum-name }}*/*" | sftp aevod@frs.sourceforge.net
+          echo "rmdir /home/frs/project/zero-linux/spaces/${{ inputs.vacuum-name }}*" | sftp aevod@frs.sourceforge.net
+          echo "rmdir /home/project-web/zero-linux/htdocs/spaces/${{ inputs.vacuum-name }}*" | sftp aevod@frs.sourceforge.net
+
       - name: Upload to SourceForge
         run: |
           DIR=$(ls | grep ${{ inputs.vacuum-name }})
