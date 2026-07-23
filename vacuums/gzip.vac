@@ -8,7 +8,7 @@ voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
 voidlicense="GPL-2.0"
 voidhome="https://ftp.gnu.org/gnu/gzip"
 voidurl="https://ftp.gnu.org/gnu/gzip/gzip-${voidver}.tar.gz"
-voidsum=526cecd62870aa8d14d2a79a35ea197e4e2b5317d275b567cee0574b2ddb2e9a
+voidsum=613d6ea44f1248d7370c7ccdeee0dd0017a09e6c39de894b3c6f03f981191c6b
 
 build_void() {
     ./configure \
