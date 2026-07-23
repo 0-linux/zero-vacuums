@@ -1,0 +1,21 @@
+voidname=readline
+voidver=8.3
+voidrev=1
+voiddesc="GNU readline library"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2"
+voidhome="https://ftp.gnu.org/gnu/readline"
+voidurl="https://ftp.gnu.org/gnu/readline/readline-${voidver}.tar.gz"
+voidsum=fe5383204467828cd495ee8d1d3c037a7eba1389c22bc6a041f627976f9061cc
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
+
