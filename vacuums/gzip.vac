@@ -1,7 +1,6 @@
 voidname=gzip
 voidver=1.14
 voidrev=1
-voiddeps=(glibc)
 voiddesc="GNU file compression util"
 voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
 voidlicense="GPL-2.0"
