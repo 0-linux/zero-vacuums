@@ -11,7 +11,7 @@ voidsum=143b1dddefaec3bd2e21e3b839b34a2b7fb9842272883c576420d605e9f30c63
 build_void() {
     ./configure \
         --prefix=/usr \
-        --libdir=lib
+        --sysconfigdir=/etc
     make -j$(nproc)
 }
 
