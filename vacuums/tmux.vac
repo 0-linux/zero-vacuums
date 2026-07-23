@@ -19,4 +19,8 @@ build_void() {
 
 install_void() {
     make DESTDIR=$DESTDIR install
+    if command -v patchelf >/dev/null 2>&1; then
+        patchelf --clear-symbol-version libtinfo.so.6 $DESTDIR/usr/bin/tmux || true
+        patchelf --clear-symbol-version libncursesw.so.6 $DESTDIR/usr/bin/tmux || true
+    fi
 }
