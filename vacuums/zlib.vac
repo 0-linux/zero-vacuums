@@ -1,0 +1,21 @@
+voidname=zlib
+voidver=1.3.2
+voidrev=1
+voiddesc="A Massively Spiffy Yet Delicately Unobtrusive Compression Library"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2"
+voidhome="https://zlib.net"
+voidurl="https://zlib.net/zlib-${voidver}.tar.gz"
+voidsum=bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
+
