@@ -1,7 +1,7 @@
 voidname=python
 voidver=3.14.6
 voidrev=1
-voiddesv="Python is a programming language that lets you work more quickly and integrate your systems more effectively."
+voiddesc="Python is a programming language that lets you work more quickly and integrate your systems more effectively."
 voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
 voidlicense="OSI"
 voidhome="https://python.org"
