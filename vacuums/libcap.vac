@@ -1,0 +1,18 @@
+voidname=libcap
+voidver=2.78
+voidrev=1
+voiddesc="This is a library for getting and setting POSIX.1e (formerly POSIX 6)
+draft 15 capabilities."
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2.0"
+voidhome="https://git.kernel.org/pub/scm/libs/libcap/libcap.git/about/"
+voidurl="https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/libcap-${voidver}.tar.gz"
+voidsum=856e742e331bb53176231e1eae3588ab044e5564c811df3138bd2f1c7b953682
+
+build_void() {
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
