@@ -11,21 +11,17 @@ voidurl="https://github.com/mesonbuild/meson/releases/download/${voidver}/meson-
 voidsum=698feae069cef3ecd4d7aaf281d7df359bdfcf555a9a1564383d3b913fa8a736
 
 build_void() {
-    # Для meson компиляция не нужна, он чистый Python
     true
 }
 
 install_void() {
-    # 1. Узнаем версию питона, чтобы положить либы в правильный site-packages
     local pyver
     pyver=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
     local site_dir="$DESTDIR/usr/lib/python${pyver}/site-packages"
 
-    # 2. Копируем сам модуль mesonbuild
     install -dm755 "$site_dir"
     cp -r mesonbuild "$site_dir/"
 
-    # 3. Создаем исполняемый бинарник /usr/bin/meson
     install -dm755 "$DESTDIR/usr/bin"
     cat << 'EOF' > "$DESTDIR/usr/bin/meson"
 #!/usr/bin/env python3
