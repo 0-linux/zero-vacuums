@@ -1,0 +1,20 @@
+voidname=iproute2
+voidver=7.1.0
+voidrev=1
+voiddesc="This is a set of utilities for Linux networking."
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2.0"
+voidhome="https://wiki.linuxfoundation.org/networking/iproute2"
+voidurl="https://git.kernel.org/pub/scm/network/iproute2/iproute2.git/snapshot/iproute2-${voidver}.tar.gz"
+voidsum=220ebd1e29b8d4e83a7b133091b678df6e74dfedbd8857c390c546b913d600fb
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
