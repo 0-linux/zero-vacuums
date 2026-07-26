@@ -1,0 +1,23 @@
+voidname=iputils
+voidver=20250605
+voidrev=1
+voiddesc="The iputils package is set of small useful utilities for Linux networking."
+voidbuilddeps=(meson,ninja)
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidlicense="GPL-2.0"
+voidhome="https://github.com/iputils/iputils"
+voidurl="https://github.com/iputils/iputils/releases/download/${voidver}/iputils-${voidver}.tar.gz"
+voidsum=475c643e5f55b302286267b97d3ce0f47ca3489ced8aa0401b1eeb1e68228d6b
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    meson build
+}
+
+install_void() {
+    cd builddir
+    DESTDIR=$DESTDIR meson install
+    cd ..
+}
