@@ -10,9 +10,19 @@ voidurl="https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/libcap-$
 voidsum=856e742e331bb53176231e1eae3588ab044e5564c811df3138bd2f1c7b953682
 
 build_void() {
-    make -j$(nproc)
+    make -j$(nproc) \
+        prefix=/usr \
+        lib=lib \
+        SBINDIR=/usr/bin \
+        RAISE_SETFCAP=no \
+        DYNAMIC=yes
 }
 
 install_void() {
-    make DESTDIR=$DESTDIR install
+    make DESTDIR="$DESTDIR" \
+        prefix=/usr \
+        lib=lib \
+        SBINDIR=/usr/bin \
+        RAISE_SETFCAP=no \
+        install
 }
