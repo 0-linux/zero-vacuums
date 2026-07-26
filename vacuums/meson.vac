@@ -15,17 +15,17 @@ build_void() {
 }
 
 install_void() {
-    local pyver
-    pyver=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-    local site_dir="$DESTDIR/usr/lib/python${pyver}/site-packages"
-
-    install -dm755 "$site_dir"
-    cp -r mesonbuild "$site_dir/"
+    install -dm755 "$DESTDIR/usr/lib/meson"
+    cp -r mesonbuild "$DESTDIR/usr/lib/meson/"
 
     install -dm755 "$DESTDIR/usr/bin"
     cat << 'EOF' > "$DESTDIR/usr/bin/meson"
 #!/usr/bin/env python3
 import sys
+import os
+
+sys.path.insert(0, '/usr/lib/meson')
+
 from mesonbuild.mesonmain import main
 if __name__ == '__main__':
     sys.exit(main())
