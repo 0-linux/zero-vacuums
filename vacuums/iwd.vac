@@ -3,7 +3,7 @@ voidver=3.12
 voidrev=1
 voiddesc="Wireless daemon for Linux"
 voiddeps=(readline,dbus)
-voidbuilddeps=(readline,dbus,ncurses)
+voidbuilddeps=(readline,dbus)
 voidlicense="GPL-2.0"
 voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
 voidhome="https://git.kernel.org/pub/scm/network/wireless/iwd.git/about/"
@@ -15,7 +15,8 @@ build_void() {
         --prefix=/usr \
         --sysconfdir=/etc \
         --localstatedir=/var \
-        --disable-systemd-service
+        --disable-systemd-service \
+        LDFLAGS="$LDFLAGS -L/usr/lib -lncurses"
     make -j$(nproc)
 }
 
