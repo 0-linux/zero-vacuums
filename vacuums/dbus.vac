@@ -11,7 +11,7 @@ voidsum=d77cc71acd93e85f2bd2a6fe3a40e5bd023519e3e9fa9b5361e7109f42b74060
 
 build_void() {
     meson build
-    meson configure build/ -Dprefix=/usr
+    meson configure build/ -Dprefix=/usr -Dlibdir=lib
     cd build
     meson compile
 }
