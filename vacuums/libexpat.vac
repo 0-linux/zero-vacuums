@@ -1,0 +1,20 @@
+voidname=libexpat
+voidver=2.8.2
+voidrev=1
+voiddesc="Fast streaming XML parser"
+voidlicense="MIT"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidhome="https://https://libexpat.github.io/"
+voidurl="https://github.com/libexpat/libexpat/releases/download/R_2_8_2/expat-${voidver}.tar.gz"
+voidsum=ef7d1994f533c9e7343d6c19f31064fc8ebbcbcaa144be3812b4f43052a05f4c
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
