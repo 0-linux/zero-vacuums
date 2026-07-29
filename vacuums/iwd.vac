@@ -16,8 +16,6 @@ build_void() {
         --sysconfdir=/etc \
         --localstatedir=/var \
         --disable-systemd-service \
-        CFLAGS="$CFLAGS -I/usr/include" \
-        LDFLAGS="$LDFLAGS -L/usr/lib"
     make -j$(nproc)
 }
 
