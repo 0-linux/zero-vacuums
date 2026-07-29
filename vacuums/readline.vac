@@ -12,7 +12,7 @@ build_void() {
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
-        --libdir=lib \
+        --libdir=/usr/lib \
         --with-curses \
         --enable-shared
     make -j$(nproc)
