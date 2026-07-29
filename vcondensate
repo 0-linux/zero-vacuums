@@ -19,7 +19,7 @@ install_deps()
             rm -rf tmp
             exit 1
         fi
-        sudo tar xf $depname.void -C /
+        sudo tar xvf $depname.void -C /
         if [[ -n $depdeps ]];
         then
             install_deps $depdeps
