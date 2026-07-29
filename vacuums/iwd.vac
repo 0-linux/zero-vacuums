@@ -14,6 +14,7 @@ build_void() {
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
+        --localstatedir=/var \
         --disable-systemd-service
     make -j$(nproc)
 }
