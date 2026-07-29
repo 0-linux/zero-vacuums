@@ -1,0 +1,20 @@
+voidname=iwd
+voidver=3.12
+voidrev=1
+voiddesc="Wireless daemon for Linux"
+voidlicense="GPL-2.0"
+voidmaintainer="Alexandr Vod <a.e.vodolagin@yandex.ru>"
+voidhome="https://git.kernel.org/pub/scm/network/wireless/iwd.git/about/"
+voidurl="https://mirrors.edge.kernel.org/pub/linux/network/wireless/iwd-${voidver}.tar.gz"
+voidsum=81a12fd4a03dd8e3d60c72b19767507c913f4b0fa4e5fc4ef5ed3f5ffae178dd
+
+build_void() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make -j$(nproc)
+}
+
+install_void() {
+    make DESTDIR=$DESTDIR install
+}
