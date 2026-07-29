@@ -16,7 +16,7 @@ build_void() {
         --sysconfdir=/etc \
         --localstatedir=/var \
         --disable-systemd-service \
-        LDFLAGS="$LDFLAGS -L/usr/lib -lncurses"
+        LIBS="-lncurses"
     make -j$(nproc)
 }
 
